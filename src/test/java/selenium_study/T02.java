@@ -58,6 +58,7 @@ public class T02 {
         WebElement option = driver.findElement(By.xpath("//select[@id='dropdown']"));
         Select select = new Select(option);
         select.selectByVisibleText("Option 1");
+        System.out.println(select.getFirstSelectedOption().getText());
         Thread.sleep(3000);
     }
 
@@ -75,11 +76,11 @@ public class T02 {
 
     @Test
     public void boyutDropDown() {
-        //5. Dropdown’un boyutunu bulun, Dropdown’da 4 öğe varsa konsolda True , degilse False yazdırın.
+        //5. Dropdown’un boyutunu bulun, Dropdown’da 3 öğe varsa konsolda True , degilse False yazdırın.
         WebElement option = driver.findElement(By.xpath("//select[@id='dropdown']"));
         Select select = new Select(option);
         List<WebElement> dropList =    select.getOptions();
-        if(dropList.size()==4){
+        if(dropList.size()==3){
             System.out.println("True");
         }else{
             System.out.println("False");
