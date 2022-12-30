@@ -27,7 +27,7 @@ public class E06 {
     }
 
     @Test
-    public void ContactUsForm(){
+    public void ContactUsForm() throws InterruptedException {
 
         //3. Verify that home page is visible successfully
         Assert.assertTrue(driver.findElement(By.xpath("//html[@lang='en']")).isDisplayed());
@@ -45,11 +45,15 @@ public class E06 {
                 Keys.TAB, "Tebrik",Keys.TAB, "Hello Messi");
 
         //7. Upload file
+        driver.findElement(By.xpath("//*[@name='upload_file']")).sendKeys("C:\\Users\\LENOVA\\OneDrive\\Masaüstü\\deneme.txt");
+        Thread.sleep(3000);
+
         //8. Click 'Submit' button
         driver.findElement(By.xpath("//input[@data-qa='submit-button']")).click();
 
         //9. Click OK button
         driver.switchTo().alert().accept();
+
 
         //10. Verify success message 'Success! Your details have been submitted successfully.' is visible
         WebElement messageelement =   driver.findElement(By.xpath("//div[@class='status alert alert-success']"));

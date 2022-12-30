@@ -2,13 +2,16 @@ package utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class TestBase {
+public abstract class TestBase {
 
     protected static WebDriver driver;
 
@@ -20,11 +23,20 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
-    @After
-    public void tearDown(){
-        driver.close();
+//    @After
+//    public void tearDown(){
+//        driver.close();
+//
+//    }
 
+    @Test
+    public void navigateUrlAndVerifyHomePage(){
+
+        driver.get("http://automationexercise.com");
+        Assert.assertTrue(driver.findElement(By.xpath("//html[@lang='en']")).isDisplayed());
     }
+
+
 
 
 
