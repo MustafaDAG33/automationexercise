@@ -76,7 +76,7 @@ public class E15 extends TestBase {
         //15. Click 'Pay and Confirm Order' button
         //16. Verify success message 'Your order has been placed successfully!'
         //17. Click 'Delete Account' button
-        driver.navigate().refresh();
+
         driver.findElement(By.xpath("//div[@class='col-sm-8']//li//a[.=' Delete Account']")).click();
         //18. Verify 'ACCOUNT DELETED!' and click 'Continue' button
         Assert.assertTrue(driver.findElement(By.xpath("//*[text()='Account Deleted!']")).isDisplayed());

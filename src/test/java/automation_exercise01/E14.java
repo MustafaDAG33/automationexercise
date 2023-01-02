@@ -86,15 +86,17 @@ public class E14 extends TestBase {
         //17. Click 'Pay and Confirm Order' button
         //18. Verify success message 'Your order has been placed successfully!'
         //19. Click 'Delete Account' button
-        driver.findElement(By.xpath("//li//a[.=' Delete Account']")).click();
-        //driver.navigate().back();
-        //driver.navigate().forward();
+
+
+        driver.findElement(By.xpath("//div[@class='col-sm-8']//li//a[.=' Delete Account']")).click();
+        driver.navigate().back();
+        driver.navigate().forward();
 
 
         //20. Verify 'ACCOUNT DELETED!' and click 'Continue' button
         Assert.assertTrue(driver.findElement(By.xpath("//*[text()='Account Deleted!']")).isDisplayed());
         driver.findElement(By.xpath("//*[text()='Continue']")).click();
-        driver.close();
+
 
     }
 
