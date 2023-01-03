@@ -10,6 +10,13 @@ import java.util.List;
 
 public class Test01 extends TestBase {
 
+    //1) Tarayıcıyı açın
+    //2) “http://practice.automationtesting.in/” URL'sini girin
+    //3) Mağaza Menüsüne tıklayın
+    //4) Şimdi Ana menü düğmesine tıklayın
+    //5) Ana sayfada yalnızca Üç Kaydırıcı olup olmadığını test edin
+    //6) Ana sayfa yalnızca üç kaydırıcı içermelidir
+
     @Test
     public void sliders(){
 

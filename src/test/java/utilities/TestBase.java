@@ -22,14 +22,14 @@ public abstract class TestBase {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
-    @After
-    public void tearDown(){
-        driver.quit();
-
-    }
+//    @After
+//    public void tearDown(){
+//        driver.quit();
+//
+//    }
 
 
     public void navigateUrlAndVerifyHomePage(){
