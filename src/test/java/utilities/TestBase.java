@@ -25,11 +25,11 @@ public abstract class TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
-//    @After
-//    public void tearDown(){
-//        driver.quit();
-//
-//    }
+    @After
+    public void tearDown(){
+        driver.quit();
+
+    }
 
 
     public void navigateUrlAndVerifyHomePage(){
