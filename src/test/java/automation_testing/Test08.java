@@ -3,16 +3,13 @@ package automation_testing;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import utilities.TestBase;
 
-public class Test07 extends TestBase {
-
-
+public class Test08 extends TestBase {
 
     @Test
-    public void addToBasket() throws InterruptedException {
+    public void addToBasketItems(){
+
         //1) Tarayıcıyı açın
         //2) "http://practice.automationtesting.in/" URL'sini girin
         //3) Mağaza Menüsüne tıklayın
@@ -30,37 +27,19 @@ public class Test07 extends TestBase {
         driver.findElement(By.xpath("//button[@class='single_add_to_cart_button button alt']")).click();
 
         //11) Kullanıcı o Kitabı Menü öğesinde fiyatla görüntüleyebilir .
+
+
+        //12) Şimdi, ödeme sayfasına ilerlemek için gezinen Öğe bağlantısına tıklayın.
+        //13) Kullanıcı, kitabı sepete ekledikten sonra, ödeme sayfasına yönlendiren menü öğesindeki Öğe bağlantısına tıklayabilir.
         driver.findElement(By.xpath("//span[@class='cartcontents']")).click();
         Assert.assertTrue(driver.getTitle().contains("Basket"));
         Assert.assertTrue(driver.findElement(By.xpath("//tr[@class='cart_item']")).isDisplayed());
-
-        //12) Kullanıcı, o kitabı Sepetine ekleyen Sepete Ekle düğmesine tıklayarak bir kitap ekleyebilir.
-        //13) Stoktaki kitaplardan daha fazla kitap seçin.Örneğin, stokta 20 kitap varsa 21 eklemeyi deneyin.
-        WebElement quantityButton = driver.findElement(By.xpath("//input[@type='number']"));
-        quantityButton.click();
-        quantityButton.sendKeys(Keys.DELETE,"70000");
-
-        //14) Sepete ekle düğmesini tıklayın
-        driver.findElement(By.xpath("//input[@name='update_cart']")).click();//update basket
-        Thread.sleep(3000);
-
-        //15) Şimdi 1 ile 20 arasında bir değer girmeniz gerektiği gibi bir hata mesajı veriyor.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 
     }
+
+
 }
