@@ -1,64 +1,53 @@
 package practice01;
 
-import org.junit.Assert;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import utilities.TestBase;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.ArrayList;
+import java.time.Duration;
 import java.util.List;
 
-public class P08 extends TestBase {
+public class P08 {
+
+    WebDriver driver;
+    @Before
+    public void setUp() throws Exception {
+        WebDriverManager.chromedriver().setup();
+        driver=new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    }
 
     @Test
     public void test01() {
-        // https://the-internet.herokuapp.com/iframe adresine gidiniz
-        driver.get("https://the-internet.herokuapp.com/iframe");
 
-        String window1 = driver.getWindowHandle();
-
-        // An iFrame conteining... başlığının altındaki Text Box’a “Techproeducation” yazin.
-        WebElement iframe = driver.findElement(By.id("mce_0_ifr"));
-        driver.switchTo().frame(iframe);
-        WebElement textbox = driver.findElement(By.xpath("//p"));
-        textbox.clear();
-        textbox.sendKeys("Techproeducation");
-        driver.switchTo().defaultContent();
-
-        // TextBox’in altinda bulunan “Elemental Selenium” linkinin gorunur oldugunu test edin
-        WebElement elesele = driver.findElement(By.xpath("//a[.='Elemental Selenium']"));
-        Assert.assertTrue(elesele.isDisplayed());
-
-        // Elemental Selenium linkine tıklayın
-        elesele.click();
+        //- ebay sayfasina gidiniz
+        driver.get("https://www.ebay.com");
 
 
-        // Açılan sayfada sayfa başlığını yazdırınız
-        List<String> windowHandle = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowHandle.get(1));
-
-        System.out.println(driver.getTitle());
+        //- electronics bolumune tiklayiniz
+        driver.findElement(By.xpath("(//*[text()='Electronics'])[2]")).click();
 
 
-        // Elemental Selenium başlığı altındaki "Source Labs" linkinin gorunur olduğunu test edin
-        WebElement sourcelabs = driver.findElement(By.cssSelector("a[rel='noopener noreferrer']"));
-        Assert.assertTrue(sourcelabs.isDisplayed());
+        //- genisligini 225 ve uzunlugu 225 olan resimlerin hepsine tiklayalaim
+        //- her sayfanin basligini yazdiralim
+        List<WebElement> list = driver.findElements(By.xpath("//*[@width='225' and @height='225']"));
 
-        // Source labs linkine tıklayın
-        sourcelabs.click();
+        for(int i=0; i<list.size(); i++){
+            List<WebElement> list1 = driver.findElements(By.xpath("//*[@width='225' and @height='225']"));
+            list1.get(i).click();
+            System.out.println(i+". baslik"+   driver.getTitle());
+            driver.navigate().back();
 
-        // Açılan sayfada sayfa başlığını yazdırınız
-        List<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowHandles.get(2));
+        }
 
-        System.out.println(driver.getTitle());
 
-        // ilk sekmeye geri dönelim ve url'ini yazdıralım
-        driver.switchTo().window(window1);
-        System.out.println(driver.getCurrentUrl());
-
-        // ilk sekmeyi kapatalım
+        //- sayfayi kapatalim
         driver.close();
+
     }
 }

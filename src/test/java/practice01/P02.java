@@ -1,60 +1,44 @@
 package practice01;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
 public class P02 {
 
-    static WebDriver driver;
-
-    @Before
-    public void setUp(){
+    public static void main(String[] args) {
 
         WebDriverManager.chromedriver().setup();
-        driver=new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
-    }
+        //go to url : https://www.techlistic.com/p/selenium-practice-form.html
+        driver.get("https://www.techlistic.com/p/selenium-practice-form.html");
 
-    @After
-    public void afterClass() throws Exception {
-        driver.close();
-    }
+        //fill the firstname
+        //fill the lastname
+        driver.findElement(By.xpath("//input[@name='firstname']")).sendKeys("Messi", Keys.TAB,"Lionel",Keys.TAB,
+                Keys.SPACE,Keys.TAB,Keys.ARROW_RIGHT,Keys.ARROW_RIGHT,Keys.ARROW_RIGHT,Keys.TAB,"27-12-2022",Keys.TAB,Keys.TAB,Keys.SPACE,
+                Keys.TAB,Keys.TAB,Keys.TAB,Keys.SPACE, Keys.TAB,"Africa",Keys.TAB,Keys.LEFT_CONTROL,Keys.SPACE,  Keys.ARROW_DOWN,Keys.SPACE,
+                Keys.ARROW_DOWN, Keys.SPACE,Keys.TAB,Keys.TAB,Keys.TAB,Keys.ENTER );
 
-    @Test
-    public void radioButton() {
-        // https://demo.guru99.com/test/radio.html adresine gidin
-        driver.get("https://demo.guru99.com/test/radio.html");
-
-        // radiobutton elementlerini locate edin
-        WebElement rb1 = driver.findElement(By.id("vfb-7-1"));
-        WebElement rb2 = driver.findElement(By.id("vfb-7-2"));
-        WebElement rb3 = driver.findElement(By.id("vfb-7-3"));
-
-        // option2'yi secin
-        rb2.click();
+        //check the gender
 
 
-        // option2 elementlerinin secili oldugunu Test edin
-        Assert.assertTrue(rb2.isSelected());
+        //check the experience
 
-        // option1 elementlerinin secili olmadıgını test edin
-        Assert.assertFalse(rb1.isSelected());
+        //fill the date
+        //choose your profession -> Automation Tester
+        //choose your tool -> Selenium Webdriver
+        //choose your continent -> Antartica
+        //choose your command  -> Browser Commands
+        //click submit button
 
-        // option3 elementlerinin secili olmadıgını test edin
-        Assert.assertFalse(rb3.isSelected());
 
     }
-
-
 }

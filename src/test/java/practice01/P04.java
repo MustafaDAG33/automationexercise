@@ -1,48 +1,58 @@
 package practice01;
 
-import org.junit.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import utilities.TestBase;
+import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class P04 extends TestBase {
+public class P04 {
 
-    @Test
-    public void test01(){
-        // https://www.jqueryscript.net/demo/Easy-iFrame-based-Twitter-Emoji-Picker-Plugin-jQuery-Emoojis/ sitesine gidin
-        driver.get("https://www.jqueryscript.net/demo/Easy-iFrame-based-Twitter-Emoji-Picker-Plugin-jQuery-Emoojis/");
+    public static void main(String[] args) {
 
-        // ikinci emojiye tıklayın
-        WebElement iframe = driver.findElement(By.xpath("//*[@id='emoojis']"));
-        driver.switchTo().frame(iframe);
-        driver.findElement(By.xpath("(//span[@data-upgraded=',MaterialRipple'])[2]")).click();
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
-        // tüm ikinci emoji öğelerini tıklayın
-        List<WebElement> emojiler = driver.findElements(By.xpath("//div[@id='nature']//img"));
-        emojiler.forEach(t->t.click());
+        // http://the-internet.herokuapp.com/add_remove_elements/ adresine gidiniz
+        driver.get("http://the-internet.herokuapp.com/add_remove_elements/");
 
-        // parent iframe e geri donun
-        driver.switchTo().defaultContent();
-        //driver.navigate().refresh(); bu yolla da parent iframe'e donebiliriz.
+        // Add Element butonuna 100 defa basınız
+        WebElement addButton = driver.findElement(By.xpath("//button[@onclick='addElement()']"));
+        for(int i=0; i<100; i++){
+            addButton.click();
+        }
+        // 100 defa basıldığını test ediniz
+        List<WebElement> list = driver.findElements(By.xpath("//button[@onclick='deleteElement()']"));
+        List<String> yuz = new ArrayList<>();
+        for(WebElement w: list){
+            yuz.add(w.getText());
+        }
+        Assert.assertEquals(100, yuz.size());
 
-
-        // formu doldurun,(Formu istediğiniz metinlerle doldurun)
-        driver.findElement(By.xpath("//input[@id='text']"));
-
-        List<WebElement> l = driver.findElements(By.xpath("//input[@class='mdl-textfield__input']"));
-        List<String> s = new ArrayList<>(Arrays.asList("O","s","m","n","m","h","t","a","e","e","k"));
-
-        for(int i=0; i<l.size(); i++){
-            l.get(i).sendKeys(s.get(i));
-
+        // 90 defa delete butonuna basınız
+        for(int i=0; i<90; i++){
+            driver.findElement(By.xpath("//button[@onclick='deleteElement()']")).click();
         }
 
-        //  apply button a basin
-        driver.findElement(By.id("send")).click();
+        // 90 defa basıldığını doğrulayınız
+        List<WebElement> list1 = driver.findElements(By.xpath("//button[@onclick='deleteElement()']"));
+        List<String> on = new ArrayList<>();
+        for(WebElement w: list1){
+            on.add(w.getText());
+        }
+        Assert.assertEquals(10, on.size());
+
+        // Sayfayı kapatınız
+        driver.quit();
+
+
 
     }
 }

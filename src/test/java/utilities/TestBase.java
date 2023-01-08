@@ -27,8 +27,16 @@ public abstract class TestBase {
 
     @After
     public void tearDown(){
-        driver.quit();
+        //driver.quit();
 
+    }
+
+    public static void waitFor(int seconds){
+        try {
+            Thread.sleep(seconds*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

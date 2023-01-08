@@ -1,20 +1,19 @@
 package practice01;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
-import java.util.List;
 
-public class P07 {
+public class P06_DropDown {
 
     WebDriver driver;
     @Before
@@ -26,29 +25,31 @@ public class P07 {
     }
 
     @Test
-    public void testDrop() {
+    public void dropDown01() {
         // https://www.amazon.com/ sayfasina gidin
         driver.get("https://www.amazon.com/");
 
-        // dropdown'dan "Baby" secenegini secin
+        // dropdown'dan "Books" secenegini secin
         WebElement webElement = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
         Select option = new Select(webElement);
-        option.selectByVisibleText("Baby");
+        option.selectByVisibleText("Books");
 
-        // sectiginiz option'i yazdirin
-        WebElement baby =    option.getFirstSelectedOption();
-        System.out.println(baby.getText());
+        // arama cubuguna "Java" aratın
+        driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys("Java",Keys.ENTER);
 
 
-        // dropdown'daki optionlarin toplam sayısının 28'e esit oldugunu test edin
-        List<WebElement> list = option.getOptions();
-        System.out.println(list.size());
-        Assert.assertEquals(28,list.size());
+        // arama sonuclarinin Java icerdigini test edin
+        WebElement result =  driver.findElement(By.xpath("(//div[@class='a-section a-spacing-small a-spacing-top-small'])[1]"));
+        Assert.assertTrue(result.getText().contains("Java"));
 
-    }
-
-    @After
-    public void tearDown() throws Exception {
         driver.close();
+
+
+
+
     }
+
+
+
+
 }
