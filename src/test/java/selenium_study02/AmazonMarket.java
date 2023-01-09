@@ -6,8 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.TestBase;
+
+import java.time.Duration;
 
 public class AmazonMarket extends TestBase {
 
@@ -17,13 +20,7 @@ public class AmazonMarket extends TestBase {
         //Go to https://www.amazon.com.tr/
         driver.get("https://www.amazon.com.tr/");
 
-
-
-        driver.findElement(By.id("sp-cc-accept")).click();
-
-
-
-
+        driver.findElement(By.id("sp-cc-accept")).click();//cerezler
 
         //Search iPhone13 512
         driver.findElement(By.id("twotabsearchtextbox")).sendKeys("iPhone13 512", Keys.ENTER);
@@ -44,12 +41,11 @@ public class AmazonMarket extends TestBase {
         //WebElement iphone256 = driver.findElement(By.xpath("//span[@id='size_name_1-announce']"));
 
         try{
-            WebElement ip =   driver.findElement(By.xpath("//span[@id='size_name_0']"));
+            //WebElement ip =   driver.findElement(By.xpath("//span[@id='size_name_0']"));
             for (int i = 0; i < 3; i++) {
 
                 driver.findElement(By.xpath("//span[@id='size_name_" + i + "']")).click();
                 waitFor(3);
-
                 WebElement iphoneTitle = driver.findElement(By.xpath("//*[@id='productTitle']"));
                 System.out.println(iphoneTitle.getText());
 
@@ -71,10 +67,10 @@ public class AmazonMarket extends TestBase {
         }catch (Exception e){
 
             try{
-                for(int i=1; i<4; i++ ){
-                    WebElement ip1 =    driver.findElement(By.xpath("//*[@id='a-autoid-11']"));
+                for(int i=0; i<3; i++ ){
+                    //WebElement ip1 =    driver.findElement(By.xpath("//*[@id='a-autoid-10']"));
 
-                    driver.findElement(By.xpath("//*[@id='a-autoid-1"+i+"']"));
+                    driver.findElement(By.xpath("//*[@id='a-autoid-1"+i+"']")).click();
                     waitFor(5);
                     WebElement iphoneTitle1 = driver.findElement(By.xpath("//*[@id='productTitle']"));
                     System.out.println(iphoneTitle1.getText());
@@ -101,26 +97,6 @@ public class AmazonMarket extends TestBase {
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
