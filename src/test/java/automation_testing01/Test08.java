@@ -39,6 +39,13 @@ public class Test08 extends TestBase {
 
 
 
+        //ENABLED-DISABLED
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@value='Update Basket']")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.xpath("//*[@value='Update Basket']")).isEnabled());
+
+
+
+
 
     }
 
