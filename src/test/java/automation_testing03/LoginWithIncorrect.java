@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import utilities.TestBase;
 
 public class LoginWithIncorrect extends TestBase {
@@ -17,8 +18,8 @@ public class LoginWithIncorrect extends TestBase {
 
         //3) Hesabım Menüsüne tıklayın
         driver.findElement(By.xpath("//*[.='My Account']")).click();
-        driver.navigate().back();
-        driver.navigate().forward();
+        Actions actions = new Actions(driver);
+        actions.moveByOffset(0,0).click().build().perform();
 
         //4) Kullanıcı adı metin kutusuna yanlış kullanıcı adı
         //girin 5) Şifre metin kutusuna yanlış şifre girin.
@@ -41,8 +42,8 @@ public class LoginWithIncorrect extends TestBase {
 
         //3) Hesabım Menüsüne tıklayın
         driver.findElement(By.xpath("//*[.='My Account']")).click();
-        driver.navigate().back();
-        driver.navigate().forward();
+        Actions actions = new Actions(driver);
+        actions.moveByOffset(0,0).click().build().perform();
 
         //4) Kullanıcı adı metin kutusuna geçerli kullanıcı adını girin
         //5) Şimdi şifre metin kutusuna boş şifreyi girin
@@ -65,8 +66,8 @@ public class LoginWithIncorrect extends TestBase {
 
         //3) Hesabım Menüsüne tıklayın
         driver.findElement(By.xpath("//*[.='My Account']")).click();
-        driver.navigate().back();
-        driver.navigate().forward();
+        Actions actions = new Actions(driver);
+        actions.moveByOffset(0,0).click().build().perform();
 
         //4) Kullanıcı adı metin kutusuna boş kullanıcı adını girin
         //5) Şimdi şifre metin kutusuna geçerli şifreyi girin
