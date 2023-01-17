@@ -22,8 +22,6 @@ public class HesapMakinesi extends TestBase {
         List<WebElement> islemler = driver.findElements(By.xpath("//span[@class='operator btn btn-outline-success']"));
         WebElement esittir = driver.findElement(By.xpath("//span[@class='btn btn-outline-warning']"));
 
-
-
         int r1 = (int)(Math.random()*10);
         int r2 = (int)(Math.random()*10);
         int rIslem = (int)(Math.random()*4);
@@ -34,7 +32,6 @@ public class HesapMakinesi extends TestBase {
         esittir.click();
         waitFor(6);
         WebElement sonucYazisi = driver.findElement(By.xpath("//div[@class='screen']"));
-
 
         double sayi1 = Double.parseDouble(sayilar.get(r1).getText());
         double sayi2 = Double.parseDouble(sayilar.get(r2).getText());

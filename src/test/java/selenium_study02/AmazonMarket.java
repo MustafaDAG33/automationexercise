@@ -31,7 +31,7 @@ public class AmazonMarket extends TestBase {
         Assert.assertTrue(result.getText().contains("iphone 13 512"));
 
         //Click iPhone13 at the top of the list
-        driver.findElement(By.xpath("(//*[@class='s-image'])[1]")).click();
+        driver.findElement(By.xpath("(//*[@class='s-image'])[7]")).click();
 
         //Log the following values for each size .Size information .Price .Color .Stock status
         //Isim - Renk - Stok - Boyut - Fiyat
