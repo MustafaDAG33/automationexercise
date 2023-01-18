@@ -47,12 +47,32 @@ public class KeybordActions01 extends TestBase {
 
         //Yeni Class olusturun ActionsClassHomeWork
         //1- "http://webdriveruniversity.com/Actions" sayfasina gidin  2- Hover over Me First" kutusunun ustune gelin
+        driver.get("http://webdriveruniversity.com/Actions");
+
         //Link 1" e tiklayin
+        WebElement hoverLink = driver.findElement(By.xpath("//*[.='Hover Over Me First!']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(hoverLink).perform();
+        driver.findElement(By.xpath("//*[.='Link 1']")).click();
+
+
         //Popup mesajini yazdirin
+        System.out.println(driver.switchTo().alert().getText());
+
         //Popup'i tamam diyerek kapatin
+        driver.switchTo().alert().accept();
+
         //“Click and hold" kutusuna basili tutun
+        WebElement clickBox = driver.findElement(By.id("click-box"));
+        actions.clickAndHold(clickBox).perform();
+
         //7-“Click and hold" kutusunda cikan yaziyi yazdirin
+        WebElement wellDone = driver.findElement(By.xpath("//*[.='Well done! keep holding that click now.....']"));
+        System.out.println(wellDone.getText());
+
         //8- “Double click me" butonunu cift tiklayin
+        WebElement doubleClickMe = driver.findElement(By.xpath("//*[.='Double Click Me!']"));
+        actions.doubleClick(doubleClickMe).perform();
     }
 
 
