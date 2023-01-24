@@ -50,11 +50,14 @@ public class StaleElementException01 extends TestBase {
         waitFor(2);
 
         //Çıkan ürünlerde sadece Apple iPhone yazanları tıklayalım
-        List<WebElement> urunler = driver.findElements(By.partialLinkText("Apple iphone"));
-        for(int i=1; i< urunler.size(); i++){
+        List<WebElement> urunler = driver.findElements(By.partialLinkText("Apple iPhone"));
+
+        for(int i=0; i< urunler.size(); i++){
             urunler.get(i).click();
             driver.navigate().back();
         }
+
+        //URUNLER LISTINI FOR LOOP'UN ICINE KOYARSAK EXCEPTION HANDLE EDILMIS OLUR.
 
 
 

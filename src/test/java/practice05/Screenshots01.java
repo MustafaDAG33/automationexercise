@@ -18,6 +18,7 @@ public class Screenshots01 extends TestBase {
     public void test01() throws IOException {
         //Amazon sayfasına gidelim
         driver.get("https://www.amazon.com");
+
         waitFor(5);
 
         //Tüm sayfanın resmini alalım
